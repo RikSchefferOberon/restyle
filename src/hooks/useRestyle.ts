@@ -1,5 +1,5 @@
 import {useMemo} from 'react';
-import {StyleProp} from 'react-native';
+import {StyleProp, StyleSheet} from 'react-native';
 
 import {BaseTheme, RestyleFunctionContainer, RNStyle} from '../types';
 import composeRestyleFunctions from '../composeRestyleFunctions';
@@ -58,7 +58,7 @@ const useRestyle = <
       props,
       composedRestyleFunction.properties,
     );
-    (cleanProps as TProps).style = [style, props.style].filter(Boolean);
+    (cleanProps as TProps).style = StyleSheet.flatten([style, props.style].filter(Boolean));
     return cleanProps;
   }, [restyleFunctions, props, dimensions, theme]);
 

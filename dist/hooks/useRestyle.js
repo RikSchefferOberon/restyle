@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = require("react");
+var react_native_1 = require("react-native");
 var composeRestyleFunctions_1 = __importDefault(require("../composeRestyleFunctions"));
 var typeHelpers_1 = require("../typeHelpers");
 var useDimensions_1 = __importDefault(require("./useDimensions"));
@@ -30,7 +31,7 @@ var useRestyle = function (restyleFunctions, props) {
             dimensions: dimensions,
         });
         var cleanProps = filterRestyleProps(props, composedRestyleFunction.properties);
-        cleanProps.style = [style, props.style].filter(Boolean);
+        cleanProps.style = react_native_1.StyleSheet.flatten([style, props.style].filter(Boolean));
         return cleanProps;
     }, [restyleFunctions, props, dimensions, theme]);
     return restyled;
